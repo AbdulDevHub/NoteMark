@@ -1,5 +1,3 @@
-// import { selectedNoteAtom } from '@renderer/store'
-// import { useAtomValue } from 'jotai'
 import { selectedNoteAtom } from '@renderer/store'
 import { useAtomValue } from 'jotai'
 import { ComponentProps } from 'react'

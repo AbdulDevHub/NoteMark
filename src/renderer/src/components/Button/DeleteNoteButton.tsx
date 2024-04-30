@@ -1,5 +1,3 @@
-//import { deleteNoteAtom } from '@/store'
-//import { useSetAtom } from 'jotai'
 import { deleteNoteAtom } from '@renderer/store'
 import { useSetAtom } from 'jotai'
 import { FaRegTrashCan } from 'react-icons/fa6'

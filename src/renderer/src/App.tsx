@@ -23,6 +23,7 @@ const App = () => {
           <ActionButtonsRow className="flex justify-between mt-1" />
           <NotePreviewList className="mt-3 space-y-1" onSelect={resetScroll} />
         </Sidebar>
+
         <Content ref={contentContainerRef} className="border-l bg-[#202226] border-l-white/20">
           <FloatingNoteTitle className="p-2" />
           <MarkdownEditor />

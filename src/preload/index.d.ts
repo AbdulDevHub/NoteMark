@@ -1,10 +1,15 @@
-import { GetNotes } from '@shared/types'
+import { CreateNote, DeleteNote, GetNotes, ReadNote, WriteNote } from '@shared/types'
 
 declare global {
   interface Window {
+    // electron: ElectronAPI
     context: {
       locale: string
-      getLocale: GetNotes
+      getNotes: GetNotes
+      readNote: ReadNote
+      writeNote: WriteNote
+      createNote: CreateNote
+      deleteNote: DeleteNote
     }
   }
 }
