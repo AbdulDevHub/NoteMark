@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import {
   ActionButtonsRow,
   Content,
@@ -9,14 +10,20 @@ import {
 import MarkdownEditor from './components/MarkdownEditor'
 
 const App = () => {
+  const contentContainerRef = useRef<HTMLDivElement>(null)
+
+  const resetScroll = () => {
+    contentContainerRef.current?.scrollTo(0, 0)
+  }
+
   return (
     <>
       <RootLayout>
         <Sidebar className="p-2 bg-[#2A2B31]">
           <ActionButtonsRow className="flex justify-between mt-1" />
-          <NotePreviewList className="mt-3 space-y-1" />
+          <NotePreviewList className="mt-3 space-y-1" onSelect={resetScroll} />
         </Sidebar>
-        <Content className="border-l bg-[#202226] border-l-white/20">
+        <Content ref={contentContainerRef} className="border-l bg-[#202226] border-l-white/20">
           <FloatingNoteTitle className="p-2" />
           <MarkdownEditor />
         </Content>
