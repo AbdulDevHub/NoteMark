@@ -29,6 +29,7 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
+    "@mdxeditor/editor": "^3.0.1",
     "@tailwindcss/typography": "^0.5.13"
   },
   "devDependencies": {
