@@ -1,10 +1,10 @@
 # NoteMark
 
-A Note taking desktop app with out-of-the-box markdown support. Built with Electron and React.
+<img height="400" src="Screenshot.png">
 
-You can follow along the entire development of this project here 👇
+## Overview
 
-[![Preview](https://github.com/gionathas/NoteMark/assets/16454253/c5072721-8c51-450d-ad74-431c65247715)](https://youtu.be/t8ane4BDyC8?si=QDnKwHR_REREtiSy)
+This repository contains the code for a note-taking desktop app with out-of-the-box markdown support. Built with Electron and React, this project is compatible and easily installable across multiple platforms including Mac, Windows, and Linux. Perfect for storing markdown notes on your desktop with ease.
 
 ## Project Setup
 
@@ -32,3 +32,13 @@ $ yarn build:mac
 # For Linux
 $ yarn build:linux
 ```
+
+## Contributing
+
+While this is a personal project, I'm open to collaboration. If you have suggestions for improvements, please open an issue.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+<br>
