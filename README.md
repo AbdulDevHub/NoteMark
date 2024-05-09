@@ -1,6 +1,6 @@
 # NoteMark
 
-<img height="400" src="Screenshot.png">
+<img height="400" src="App Screenshot.png">
 
 ## Overview
 
