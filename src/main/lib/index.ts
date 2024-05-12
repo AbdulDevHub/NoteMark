@@ -9,7 +9,7 @@ import path from 'path'
 import welcomeNoteFile from '../../../resources/welcomeNote.md?asset'
 
 export const getRootDir = () => {
-  return `${homedir()}\\${appDirectoryName}`
+  return path.join(homedir(), appDirectoryName)
 }
 
 export const getNotes: GetNotes = async () => {
