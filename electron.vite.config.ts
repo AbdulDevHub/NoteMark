@@ -2,31 +2,20 @@ import react from '@vitejs/plugin-react'
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite'
 import { resolve } from 'path'
 
+const shared = { '@shared': resolve('src/shared') }
+
 export default defineConfig({
   main: {
     plugins: [externalizeDepsPlugin()],
-    resolve: {
-      alias: {
-        '@/lib': resolve('src/main/lib'),
-        '@shared': resolve('src/shared')
-      }
-    }
+    resolve: { alias: shared }
   },
   preload: {
-    plugins: [externalizeDepsPlugin()]
+    plugins: [externalizeDepsPlugin()],
+    resolve: { alias: shared }
   },
   renderer: {
-    assetsInclude: 'src/renderer/assets/**',
     resolve: {
-      alias: {
-        '@renderer': resolve('src/renderer/src'),
-        '@shared': resolve('src/shared'),
-        '@/hooks': resolve('src/renderer/src/hooks'),
-        '@/assets': resolve('src/renderer/src/assets'),
-        '@/store': resolve('src/renderer/src/store'),
-        '@/components': resolve('src/renderer/src/components'),
-        '@/mocks': resolve('src/renderer/src/mocks')
-      }
+      alias: { ...shared, '@renderer': resolve('src/renderer/src') }
     },
     plugins: [react()]
   }
