@@ -1,214 +1,215 @@
+@import '@mdxeditor/editor/style.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Design tokens: RGB triplets so Tailwind can apply opacity (bg-fg/10 etc.). See context/UI_TOKENS.md. */
+:root {
+  --bg: 255 255 255;
+  --bg-sidebar: 246 246 243;
+  --surface: 234 234 230;
+  --fg: 29 29 31;
+  --muted: 110 110 118;
+  --accent: 196 132 18;
+  --titlebar-height: 40px;
+  --sidebar-width: 264px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: 27 28 32;
+    --bg-sidebar: 34 35 39;
+    --surface: 46 47 54;
+    --fg: 232 232 235;
+    --muted: 152 152 162;
+    --accent: 242 184 75;
+    color-scheme: dark;
+  }
+}
+
 @layer base {
+  html,
+  body,
   #root {
     @apply h-full;
   }
 
-  html,
   body {
-    @apply h-full;
+    @apply overflow-hidden bg-canvas font-sans text-[14px] text-fg antialiased;
+  }
 
-    @apply select-none;
-
+  /* macOS: let the window vibrancy show through the sidebar. */
+  html[data-platform='darwin'] body {
     @apply bg-transparent;
-
-    @apply font-mono antialiased text-white;
-
-    @apply overflow-hidden;
   }
 
-  header {
-    -webkit-app-region: drag;
+  ::selection {
+    background: rgb(var(--accent) / 0.3);
   }
 
-  button {
-    -webkit-app-region: no-drag;
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent/60;
   }
 
   ::-webkit-scrollbar {
-    @apply w-2;
+    @apply h-2 w-2;
   }
-
   ::-webkit-scrollbar-thumb {
-    @apply bg-[#555] rounded-md;
+    @apply rounded-full bg-fg/15 hover:bg-fg/25;
   }
-
   ::-webkit-scrollbar-track {
     @apply bg-transparent;
   }
 }
 
-/* @import './base.css';
+@layer components {
+  .drag-region {
+    -webkit-app-region: drag;
+  }
+  .no-drag {
+    -webkit-app-region: no-drag;
+  }
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-image: url('./wavy-lines.svg');
-  background-size: cover;
-  user-select: none;
-}
+  .icon-button {
+    @apply no-drag inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted transition-colors hover:bg-fg/[0.07] hover:text-fg disabled:pointer-events-none disabled:opacity-40;
+  }
 
-code {
-  font-weight: 600;
-  padding: 3px 5px;
-  border-radius: 2px;
-  background-color: var(--color-background-mute);
-  font-family:
-    ui-monospace,
-    SFMono-Regular,
-    SF Mono,
-    Menlo,
-    Consolas,
-    Liberation Mono,
-    monospace;
-  font-size: 85%;
-}
-
-#root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-bottom: 80px;
-}
-
-.logo {
-  margin-bottom: 20px;
-  -webkit-user-drag: none;
-  height: 128px;
-  width: 128px;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 1.2em #6988e6aa);
-}
-
-.creator {
-  font-size: 14px;
-  line-height: 16px;
-  color: var(--ev-c-text-2);
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.text {
-  font-size: 28px;
-  color: var(--ev-c-text-1);
-  font-weight: 700;
-  line-height: 32px;
-  text-align: center;
-  margin: 0 10px;
-  padding: 16px 0;
-}
-
-.tip {
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--ev-c-text-2);
-  font-weight: 600;
-}
-
-.react {
-  background: -webkit-linear-gradient(315deg, #087ea4 55%, #7c93ee);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
-}
-
-.ts {
-  background: -webkit-linear-gradient(315deg, #3178c6 45%, #f0dc4e);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
-}
-
-.actions {
-  display: flex;
-  padding-top: 32px;
-  margin: -6px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-.action {
-  flex-shrink: 0;
-  padding: 6px;
-}
-
-.action a {
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  border: 1px solid transparent;
-  text-align: center;
-  font-weight: 600;
-  white-space: nowrap;
-  border-radius: 20px;
-  padding: 0 20px;
-  line-height: 38px;
-  font-size: 14px;
-  border-color: var(--ev-button-alt-border);
-  color: var(--ev-button-alt-text);
-  background-color: var(--ev-button-alt-bg);
-}
-
-.action a:hover {
-  border-color: var(--ev-button-alt-hover-border);
-  color: var(--ev-button-alt-hover-text);
-  background-color: var(--ev-button-alt-hover-bg);
-}
-
-.versions {
-  position: absolute;
-  bottom: 30px;
-  margin: 0 auto;
-  padding: 15px 0;
-  font-family: 'Menlo', 'Lucida Console', monospace;
-  display: inline-flex;
-  overflow: hidden;
-  align-items: center;
-  border-radius: 22px;
-  background-color: #202127;
-  backdrop-filter: blur(24px);
-}
-
-.versions li {
-  display: block;
-  float: left;
-  border-right: 1px solid var(--ev-c-gray-1);
-  padding: 0 20px;
-  font-size: 14px;
-  line-height: 14px;
-  opacity: 0.8;
-  &:last-child {
-    border: none;
+  .kbd {
+    @apply inline-flex min-w-[1.4rem] items-center justify-center rounded border border-fg/15 bg-fg/[0.04] px-1 font-sans text-[11px] leading-[1.15rem] text-muted;
   }
 }
 
-@media (max-width: 720px) {
-  .text {
-    font-size: 20px;
-  }
+/* ---------- Editor ---------- */
+
+.mdxeditor,
+.mdxeditor-popup-container {
+  /* Map MDXEditor's own palette onto ours so toolbar, popups and dialogs match the theme. */
+  --baseBase: rgb(var(--bg));
+  --basePageBg: rgb(var(--bg));
+  --baseBgSubtle: rgb(var(--fg) / 0.03);
+  --baseBg: rgb(var(--fg) / 0.05);
+  --baseBgHover: rgb(var(--fg) / 0.08);
+  --baseBgActive: rgb(var(--fg) / 0.12);
+  --baseLine: rgb(var(--fg) / 0.1);
+  --baseBorder: rgb(var(--fg) / 0.12);
+  --baseBorderHover: rgb(var(--fg) / 0.2);
+  --baseSolid: rgb(var(--muted));
+  --baseText: rgb(var(--muted));
+  --baseTextContrast: rgb(var(--fg));
+  --accentText: rgb(var(--accent));
+  --accentBorder: rgb(var(--accent) / 0.5);
+  --accentSolid: rgb(var(--accent));
+  --accentBgActive: rgb(var(--accent) / 0.2);
+  --font-body: theme('fontFamily.sans');
+  --font-mono: theme('fontFamily.mono');
 }
 
-@media (max-width: 620px) {
-  .versions {
-    display: none;
-  }
+.mdxeditor {
+  @apply flex min-h-full flex-col;
 }
 
-@media (max-width: 350px) {
-  .tip,
-  .actions {
-    display: none;
-  }
-} */
+.mdxeditor-toolbar {
+  @apply sticky top-0 z-10 mx-auto w-full max-w-[860px] rounded-none border-b border-fg/[0.06] !bg-canvas/90 px-6 py-1.5 backdrop-blur;
+}
+
+.mdxeditor-rich-text-editor,
+.mdxeditor-diff-source-wrapper {
+  @apply flex-1;
+}
+
+.mdxeditor-source-editor .cm-editor,
+.mdxeditor-diff-editor .cm-editor {
+  @apply mx-auto max-w-[780px] bg-transparent px-6 py-6 font-mono text-[14px];
+}
+
+.mdxeditor-popup-container {
+  @apply z-50;
+}
+
+/* Note body typography: Tailwind Typography, recoloured with our tokens. */
+.note-prose {
+  /* @apply first: the prose class sets its own --tw-prose-* values, which ours must override. */
+  @apply prose mx-auto min-h-[60vh] w-full max-w-[780px] px-6 pb-24 pt-6 text-[16px] leading-[1.75] caret-accent outline-none;
+  --tw-prose-body: rgb(var(--fg) / 0.88);
+  --tw-prose-headings: rgb(var(--fg));
+  --tw-prose-bold: rgb(var(--fg));
+  --tw-prose-links: rgb(var(--accent));
+  --tw-prose-bullets: rgb(var(--muted));
+  --tw-prose-counters: rgb(var(--muted));
+  --tw-prose-quotes: rgb(var(--fg) / 0.75);
+  --tw-prose-quote-borders: rgb(var(--accent) / 0.6);
+  --tw-prose-hr: rgb(var(--fg) / 0.1);
+  --tw-prose-code: rgb(var(--fg));
+  --tw-prose-th-borders: rgb(var(--fg) / 0.15);
+  --tw-prose-td-borders: rgb(var(--fg) / 0.08);
+}
+
+.note-prose :where(code):not(:where(pre *, .cm-editor *)) {
+  @apply rounded bg-fg/[0.07] px-1.5 py-0.5 text-[0.88em] font-normal before:content-none after:content-none;
+}
+
+.note-prose a {
+  @apply cursor-pointer underline decoration-accent/40 underline-offset-2;
+}
+
+.note-prose table {
+  @apply my-4 block overflow-x-auto;
+}
+
+.note-prose .cm-editor {
+  @apply rounded-lg border border-fg/10 text-[13.5px];
+}
+
+/* Checklists: MDXEditor draws the box with ::before/::after; make room for it inside prose lists. */
+.note-prose li[role='checkbox'] {
+  @apply list-none pl-7;
+  margin-inline-start: -1.25rem;
+}
+.note-prose li[role='checkbox']::before {
+  top: 0.45em;
+}
+.note-prose li[role='checkbox']::after {
+  top: calc(0.45em + 2px);
+}
+.note-prose li[role='checkbox'][aria-checked='true'] {
+  @apply text-muted decoration-fg/30;
+}
+
+.note-prose td p,
+.note-prose th p {
+  @apply my-0;
+}
+
+.note-prose :where(td, th) {
+  @apply py-1.5 align-middle;
+}
+
+/* ---------- Command palette (cmdk) ---------- */
+
+[cmdk-group-heading] {
+  @apply px-3 pb-1 pt-3 text-[11px] font-medium uppercase tracking-wider text-muted;
+}
+
+[cmdk-item] {
+  @apply mx-1.5 flex cursor-pointer items-center gap-3 rounded-md px-2.5 py-2 text-fg/90;
+}
+
+[cmdk-item][data-selected='true'] {
+  @apply bg-accent/15 text-fg;
+}
+
+[cmdk-empty] {
+  @apply px-4 py-10 text-center text-muted;
+}
+
+/* ---------- Focus mode: just the text ---------- */
+
+.focus-mode .mdxeditor-toolbar {
+  @apply hidden;
+}
+
+.focus-mode .note-prose {
+  @apply pt-[12vh];
+}

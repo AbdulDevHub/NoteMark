@@ -1,54 +1,42 @@
-## Welcome to NoteMark 👋🏻
+# Welcome to NoteMark 👋
 
-NoteMark is a simple **note-taking app** that uses **Markdown** syntax to format your notes.
+NoteMark is a fast, distraction-free **Markdown** notebook. Every note is a plain `.md` file in your notes folder, so you can open, sync or back them up with any tool you like.
 
-You can create your first note by clicking on the top-left icon on the sidebar, or delete one by clicking on top right icon.
+## The basics
 
-Following there's a quick overview of the currently supported Markdown syntax.
+- Press **Ctrl/⌘ + N** to create a note, then type its name.
+- Click the title at the top (or press **F2**) to rename a note.
+- Press **Ctrl/⌘ + P** to jump to any note, search inside all notes, or run a command.
+- Right-click a note in the sidebar to export it as PDF or HTML, show it in its folder, or delete it.
+- Changes save automatically as you type.
 
-## Text formatting
+## Formatting
 
-This is a **bold** text.
-This is an _italic_ text.
+Write Markdown directly (`# Heading`, `**bold**`, `- list`) or use the toolbar. You get _italic_, **bold**, `inline code`, [links](https://github.com/AbdulDevHub/NoteMark) and more.
 
-## Headings
+> Blockquotes are handy for quotes and callouts.
 
-Here are all the heading formats currently supported by **_NoteMark_**:
+### Checklists
 
-# Heading 1
+- [x] Install NoteMark
+- [ ] Write your first note
+- [ ] Try the command palette
 
-## Heading 2
+### Tables
 
-### Heading 3
-
-#### Heading 4
-
-### Bulleted list
-
-For example, you can add a list of bullet points:
-
-- Bullet point 1
-- Bullet point 2
-- Bullet point 3
-
-### Numbered list
-
-Here we have a numbered list:
-
-1. Numbered list item 1
-2. Numbered list item 2
-3. Numbered list item 3
-
-### Blockquote
-
-> This is a blockquote. You can use it to emphasize some text or to cite someone.
+| Shortcut     | Action                    |
+| ------------ | ------------------------- |
+| Ctrl/⌘ + N   | New note                  |
+| Ctrl/⌘ + P   | Search notes and commands |
+| Ctrl/⌘ + \\  | Toggle the sidebar        |
+| Ctrl/⌘ + ⇧ F | Focus mode                |
 
 ### Code blocks
 
-Only `inline code` is currently supported!
+```ts
+const greet = (name: string) => `Hello, ${name}!`
+```
 
-Code block snippets using the following syntax _\`\`\`js\`\`\`_ are **_not supported_** yet!
+---
 
-### Links
-
-Links are **_not supported_** yet!
+Switch to **source mode** with the button at the right end of the toolbar if you prefer raw Markdown. Happy writing!
