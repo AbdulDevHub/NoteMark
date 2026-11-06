@@ -7,13 +7,12 @@ dated entry to the session log (newest first). Fold stale log entries into "Earl
 ## Current state
 - Version 2.0.0: full editor (tables, code, checklists, source mode), command palette with full-text search, inline rename, PDF/HTML export, trash-based delete, external-edit sync, themes, focus mode, custom title bar, new icon.
 - `npm run verify` passes (typecheck, lint, 41 unit tests). 5 Playwright e2e tests pass against the built app, and the packaged Windows build (`electron-builder --dir`) launches cleanly.
-- CI (`.github/workflows/ci.yml`) and tag-triggered release builds (`release.yml`) exist but haven't run on GitHub yet.
+- Released: v2.0.0 is published on GitHub Releases (Windows .exe, macOS x64/arm64 .dmg, Linux .AppImage/.deb), merged via PR #5. CI and release workflows are green.
 
 ## In progress
 - Nothing.
 
 ## Next steps
-- Push to GitHub, confirm CI is green, tag `v2.0.0` and publish the draft release.
 - Upload `docs/social-preview.png` in the repo's Settings → Social preview (no API for this).
 - See `context/BUILD_PLAN.md` → "Later" (folders/tags, local images, auto-update, signing).
 - Dev-only `npm audit` findings (Vite 5/esbuild dev server, vitest 3) clear with a Vite 6+/Vitest 4 upgrade; production deps have 0 known issues.
